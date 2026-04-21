@@ -1,27 +1,17 @@
-import java.util.Scanner;
+class SlotConverter {
 
-class InputHandler {
-
-    public static int getSlot() {
-        Scanner sc = new Scanner(System.in);
-        int slot;
-
-        while (true) {
-            System.out.print("Enter slot (1-9): ");
-            if (sc.hasNextInt()) {
-                slot = sc.nextInt();
-                if (slot >= 1 && slot <= 9) {
-                    return slot;
-                }
-            } else {
-                sc.next();
-            }
-            System.out.println("Invalid input. Try again.");
-        }
+    public static int[] convertToIndex(int slot) {
+        int row = (slot - 1) / 3;
+        int col = (slot - 1) % 3;
+        return new int[]{row, col};
     }
 
     public static void main(String[] args) {
-        int chosenSlot = getSlot();
-        System.out.println("You selected: " + chosenSlot);
+        int slot = 5;
+
+        int[] index = convertToIndex(slot);
+
+        System.out.println("Row: " + index[0]);
+        System.out.println("Column: " + index[1]);
     }
 }
